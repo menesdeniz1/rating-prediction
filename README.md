@@ -21,4 +21,6 @@ Inputs are simple comma-separated text without headers or quoted fields. Trainin
 
 The original datasets were removed from reachable history and retained locally because redistribution terms were not established. Bring authorized data; the automated checks use only tiny synthetic inputs.
 
+A September 2026 restoration review found 1,048,575 headerless training rows and 5,000 headerless query rows in the backup. The training file contains 7,955 zero ratings, which the current 0.5–5 validator rejects. Their meaning and the upstream dataset/version are not documented in the original repository. The files therefore remain preserved in the owner's backup pending provenance and scale clarification; they are not silently filtered, relabeled as MovieLens, or presented as runnable validated inputs. These counts describe the old files, not model accuracy or engineering impact.
+
 September 2026 maintenance replaced unsafe hardcoded-path/input/cache/index handling with portable validated inputs, const lookups and deterministic bounded top-ten output. The original coursework history remains where possible; current repairs are not historical achievements. No accuracy or performance benchmark is claimed. The straightforward neighbor scan is not designed for large-scale deployment.
