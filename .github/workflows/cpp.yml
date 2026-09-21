@@ -1,0 +1,25 @@
+name: C++ checks
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile and run synthetic tests
+        run: |
+          g++ -std=c++17 -Wall -Wextra -Werror Rating_Prediction.cpp -o /tmp/predict
+          g++ -std=c++17 -Wall -Wextra -Werror Top_Ten.cpp -o /tmp/top-ten
+          g++ -std=c++17 -Wall -Wextra -Werror tests/test.cpp -o /tmp/checks
+          /tmp/checks
+          printf '1,10,4\n2,10,3\n2,20,5\n' > /tmp/train
+          printf '7,1,20\n8,999,20\n' > /tmp/queries
+          /tmp/predict /tmp/train /tmp/queries /tmp/predictions
+          printf '7,5\n8,0\n' > /tmp/expected
+          diff /tmp/expected /tmp/predictions
+          /tmp/top-ten /tmp/train
+          ! /tmp/predict /tmp/missing /tmp/queries /tmp/out
+          ! /tmp/predict /tmp/train /tmp/queries /tmp/predictions
+          printf '1,10,nan\n' > /tmp/bad
+          ! /tmp/top-ten /tmp/bad
