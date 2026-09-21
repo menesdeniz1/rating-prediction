@@ -13,6 +13,9 @@ jobs:
           g++ -std=c++17 -Wall -Wextra -Werror Top_Ten.cpp -o /tmp/top-ten
           g++ -std=c++17 -Wall -Wextra -Werror tests/test.cpp -o /tmp/checks
           /tmp/checks
+          /tmp/predict examples/train.txt examples/queries.txt /tmp/example-predictions
+          diff --strip-trailing-cr examples/expected.txt /tmp/example-predictions
+          /tmp/top-ten examples/train.txt
           printf '1,10,4\n2,10,3\n2,20,5\n' > /tmp/train
           printf '7,1,20\n8,999,20\n' > /tmp/queries
           /tmp/predict /tmp/train /tmp/queries /tmp/predictions

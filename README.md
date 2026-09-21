@@ -4,6 +4,15 @@ An educational user-based collaborative-filtering experiment. Similarity is Jacc
 
 ## Build and run
 
+For a small runnable demonstration, use the **synthetic** files in `examples/`, not the historical root-level `train.csv`. After compiling below, run:
+
+```sh
+./predict examples/train.txt examples/queries.txt demo-predictions.txt
+./top-ten examples/train.txt
+```
+
+The prediction output should match [examples/expected.txt](examples/expected.txt): query 7 receives 5, while query 8 returns the documented unavailable sentinel 0. Choose a new output filename on subsequent runs; existing files are deliberately not overwritten. These examples demonstrate behavior, not measured recommendation accuracy. The original coursework data is preserved unchanged and its range mismatch is explained below.
+
 Use a C++17 compiler:
 
 ```sh
