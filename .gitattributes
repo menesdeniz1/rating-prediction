@@ -1,0 +1,3 @@
+# Preserve the original coursework CSV bytes, including line endings.
+/train.csv -text
+/test.csv -text
