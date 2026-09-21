@@ -17,6 +17,7 @@ inline std::vector<std::vector<std::string>> rows(const std::string& path) {
     while (std::getline(file, line)) {
         if (line.empty()) continue;
         if (line.back()=='\r') line.pop_back();
+        if (line.empty()) continue;
         std::stringstream stream(line); std::string cell; std::vector<std::string> row;
         while (std::getline(stream,cell,',')) row.push_back(cell);
         if (row.size()!=3 || line.back()==',') throw std::runtime_error("Expected exactly three fields, no header");
